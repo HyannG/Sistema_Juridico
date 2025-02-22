@@ -1,14 +1,16 @@
 services:
   - type: web
-    name: meu-site-juridico
-    runtime: docker
-    env: python
-    plan: free  # Plano gratuito
-    dockerfilePath: Dockerfile
+    name: sistema_juridico
+    runtime: python
+        buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      python manage.py migrate
+    startCommand: "gunicorn sistema_juridico.wsgi:application"
     envVars:
       - key: SECRET_KEY
-        generateValue: true  
+        value: 'django-insecure-p@ckyik0c6$$#ghd4+f4omksoc)cs$)a_&i*_5m5!h-21a&4wx'
       - key: DEBUG
         value: "False"
-      - key: ALLOWED_HOSTS
-        value: ".onrender.com"
+      - key: DISABLE_COLLECTSTATIC
+        value: "1"  
