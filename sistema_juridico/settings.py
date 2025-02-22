@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-p@ckyik0c6$$#ghd4+f4omksoc)cs$)a_&i*_5m5!h-21a&4wx
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://sistema-juridico-1.onrender.com"] 
+ALLOWED_HOSTS = ["*"] 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
