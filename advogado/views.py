@@ -3,6 +3,18 @@ from .forms import AdvogadoRegistrationForm, ProcessoForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Processo
+from rest_framework import viewsets
+from .models import Advogado, Processo
+from .serializers import AdvogadoSerializer, ProcessoSerializer
+
+class AdvogadoViewSet(viewsets.ModelViewSet):
+    queryset = Advogado.objects.all()
+    serializer_class = AdvogadoSerializer
+
+class ProcessoViewSet(viewsets.ModelViewSet):
+    queryset = Processo.objects.all()
+    serializer_class = ProcessoSerializer
+
 @login_required
 def dashboard(request):
     processos = Processo.objects.filter(advogado=request.user.advogado)

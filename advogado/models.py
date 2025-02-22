@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
-# Modelo de Advogado
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,7 +11,7 @@ class Advogado(models.Model):
     def __str__(self):
         return self.user.username
 
-# Modelo de Processo
+
 class Processo(models.Model):
     advogado = models.ForeignKey(Advogado, related_name="processos", on_delete=models.CASCADE)
     numero = models.IntegerField(unique=True, verbose_name="Número do Processo")
@@ -21,7 +19,7 @@ class Processo(models.Model):
     
     STATUS_CHOICES = (
         ('Aberto', 'Aberto'),
-        ('Em Andamento', 'Em Andamento'),
+        ('Protocolado', 'Protocolado'),
         ('Finalizado', 'Finalizado'),
     )
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Aberto', verbose_name="Status")
@@ -32,6 +30,10 @@ class Processo(models.Model):
         ('Trabalhista', 'Trabalhista'),
         ('Tributário', 'Tributário'),
         ('Família', 'Família'),
+        ('Previdenciário', 'Previdenciário'),
+        ('administração', 'Administração'),
+        ('Sucessão', 'Sucessão'),
+        ('Consumidor', 'Consumidor'),
     )
     tipo = models.CharField(max_length=50, choices=TIPO_CHOICES, verbose_name="Tipo de Processo")
     
