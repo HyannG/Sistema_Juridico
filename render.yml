@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: meu-site-juridico
+    runtime: docker
+    env: python
+    plan: free  # Plano gratuito
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true  
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
